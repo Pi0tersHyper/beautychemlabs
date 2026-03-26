@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Mail, Phone, User, Send } from 'lucide-react';
+import { Mail, Phone, User, Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -8,13 +8,41 @@ export default function Contact() {
     phone: '',
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    setStatus('sending');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/contact@beautychemlabs.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Nie podano',
+          message: formData.message,
+          _subject: `Nowe zapytanie od ${formData.name} — BeautyChemLabs`,
+          _template: 'table',
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        setTimeout(() => setStatus('idle'), 8000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -36,13 +64,13 @@ export default function Contact() {
 
             <div className="space-y-5 sm:space-y-6">
               <a
-                href="mailto:kontakt@beautychemlabs.com"
+                href="mailto:contact@beautychemlabs.com"
                 className="flex items-center gap-3 sm:gap-4 text-navy-300 hover:text-gold-400 transition-colors group"
               >
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-navy-800/50 flex items-center justify-center group-hover:bg-gold-500/10 transition-colors shrink-0">
                   <Mail size={18} className="text-gold-400" />
                 </div>
-                <span className="font-mono text-xs sm:text-sm break-all">kontakt@beautychemlabs.com</span>
+                <span className="font-mono text-xs sm:text-sm break-all">contact@beautychemlabs.com</span>
               </a>
 
               <a
@@ -103,16 +131,29 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold tracking-wider uppercase text-xs sm:text-sm rounded-sm transition-all duration-200 hover:shadow-lg hover:shadow-gold-500/25 mt-2 sm:mt-4"
+                disabled={status === 'sending'}
+                className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-gold-500 hover:bg-gold-400 disabled:bg-gold-500/50 disabled:cursor-not-allowed text-navy-950 font-semibold tracking-wider uppercase text-xs sm:text-sm rounded-sm transition-all duration-200 hover:shadow-lg hover:shadow-gold-500/25 mt-2 sm:mt-4"
               >
-                <Send size={16} />
-                {"Wy\u015Blij zapytanie"}
+                {status === 'sending' ? (
+                  <Loader2 size={16} className="animate-spin" />
+                ) : (
+                  <Send size={16} />
+                )}
+                {status === 'sending' ? 'Wysy\u0142anie...' : 'Wy\u015Blij zapytanie'}
               </button>
 
-              {submitted && (
-                <p className="text-green-400 text-sm mt-4">
-                  {"Dzi\u0119kujemy! Twoje zapytanie zosta\u0142o wys\u0142ane. Odezwiemy si\u0119 w ci\u0105gu 24 godzin."}
-                </p>
+              {status === 'success' && (
+                <div className="flex items-center gap-2 text-green-400 text-sm mt-4">
+                  <CheckCircle size={16} />
+                  <p>{"Dzi\u0119kujemy! Twoje zapytanie zosta\u0142o wys\u0142ane. Odezwiemy si\u0119 w ci\u0105gu 24 godzin."}</p>
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="flex items-center gap-2 text-red-400 text-sm mt-4">
+                  <AlertCircle size={16} />
+                  <p>{"Wyst\u0105pi\u0142 b\u0142\u0105d. Spr\u00F3buj ponownie lub napisz bezpo\u015Brednio na contact@beautychemlabs.com"}</p>
+                </div>
               )}
             </form>
           </div>
