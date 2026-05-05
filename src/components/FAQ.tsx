@@ -50,8 +50,8 @@ const faqItems: FAQItem[] = [
       en: 'What certifications do you have?',
     },
     answer: {
-      pl: 'Wszystkie nasze surowce posiadają certyfikaty REACH, GMP+ i ISO 9001. Każdy produkt ma dostępną pełną dokumentację techniczną, karty charakterystyki (SDS) oraz certyfikaty jakości.',
-      en: 'All our raw materials are certified with REACH, GMP+, and ISO 9001. Each product has complete technical documentation, safety data sheets (SDS), and quality certificates available.',
+      pl: 'Wszystkie nasze surowce posiadają certyfikaty REACH, HACCP i ISO 9001. Każdy produkt ma dostępną pełną dokumentację techniczną, karty charakterystyki (SDS) oraz certyfikaty jakości.',
+      en: 'All our raw materials are certified with REACH, HACCP, and ISO 9001. Each product has complete technical documentation, safety data sheets (SDS), and quality certificates available.',
     },
   },
   {

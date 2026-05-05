@@ -9,8 +9,8 @@ export default function Certifications() {
     },
     {
       icon: Shield,
-      name: 'GMP+',
-      description: 'System zarządzania jakością dla branży paszowej',
+      name: 'HACCP',
+      description: 'System analizy zagrożeń i krytycznych punktów kontroli',
     },
     {
       icon: Zap,
