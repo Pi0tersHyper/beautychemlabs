@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Droplets, FlaskConical, Leaf, Dna, Atom } from 'lucide-react';
 import { products } from '../data/products';
+import type { Product } from '../data/products';
 import ProductDetail from './ProductDetail';
 
 const categoryIcons: Record<string, typeof FlaskConical> = {
@@ -20,7 +21,7 @@ const categoryLabels: Record<string, string> = {
 };
 
 export default function Products() {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (
     <>

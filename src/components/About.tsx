@@ -1,4 +1,4 @@
-import { FlaskConical, Truck, ShieldCheck, CheckCircle } from 'lucide-react';
+import { Truck, ShieldCheck, CheckCircle } from 'lucide-react';
 
 export default function About() {
   return (
