@@ -4,6 +4,7 @@ import Certifications from './components/Certifications';
 import About from './components/About';
 import Products from './components/Products';
 import WhyUs from './components/WhyUs';
+import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -16,6 +17,7 @@ function App() {
       <About />
       <Products />
       <WhyUs />
+      <FAQ />
       <Contact />
       <Footer />
     </div>
