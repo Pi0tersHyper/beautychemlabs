@@ -7,6 +7,10 @@ export interface Product {
   category: 'acid' | 'humectant' | 'protein' | 'extract' | 'other';
   form: string;
   gradient: string;
+  availability?: 'inStock' | 'onOrder';
+  bulkPricing?: Array<{ quantity: string; pricePerKg: number }>;
+  inci?: string[];
+  certificates?: string[];
 }
 
 export const products: Product[] = [
