@@ -29,10 +29,17 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-0 text-xl sm:text-2xl font-bold font-[family-name:var(--font-heading)]">
-            <span className="text-white-900">Beauty</span>
-            <span className="text-teal-600">Chem</span>
-            <span className="text-white-600 text-[10px] sm:text-sm font-normal ml-1 tracking-widest uppercase">Labs</span>
+          <a href="#" className="flex items-center gap-2 sm:gap-2.5 text-xl sm:text-2xl font-bold font-[family-name:var(--font-heading)]">
+            <img
+              src="/logo-mark.svg"
+              alt="BeautyChemLabs"
+              className="w-8 h-8 sm:w-9 sm:h-9 shrink-0"
+            />
+            <span className="flex items-baseline gap-0">
+              <span className="text-white-900">Beauty</span>
+              <span className="text-teal-600">Chem</span>
+              <span className="text-white-600 text-[10px] sm:text-sm font-normal ml-1 tracking-widest uppercase">Labs</span>
+            </span>
           </a>
 
           {/* Desktop nav */}
