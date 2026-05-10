@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-
-type Language = 'pl' | 'en';
+import { useApp } from '../context/AppContext';
 
 interface FAQItem {
   id: string;
@@ -50,19 +49,8 @@ const faqItems: FAQItem[] = [
       en: 'What certifications do you have?',
     },
     answer: {
-      pl: 'Wszystkie nasze surowce posiadają certyfikaty REACH, HACCP i ISO 9001. Każdy produkt ma dostępną pełną dokumentację techniczną, karty charakterystyki (SDS) oraz certyfikaty jakości.',
-      en: 'All our raw materials are certified with REACH, HACCP, and ISO 9001. Each product has complete technical documentation, safety data sheets (SDS), and quality certificates available.',
-    },
-  },
-  {
-    id: 'payments',
-    question: {
-      pl: 'Jakie są warunki płatności?',
-      en: 'What are your payment terms?',
-    },
-    answer: {
-      pl: 'Oferujemy elastyczne warunki płatności dostosowane do Twoich potrzeb — od przedpłaty po netto 30. Szczegóły omówimy indywidualnie dla każdego klienta.',
-      en: 'We offer flexible payment terms adapted to your needs — from prepayment to net 30. We will discuss the details individually for each client.',
+      pl: 'Wszystkie nasze surowce posiadają certyfikaty REACH i HACCP. Każdy produkt ma dostępną pełną dokumentację techniczną, karty charakterystyki (SDS) oraz certyfikaty jakości.',
+      en: 'All our raw materials are certified with REACH and HACCP. Each product has complete technical documentation, safety data sheets (SDS), and quality certificates available.',
     },
   },
   {
@@ -79,7 +67,7 @@ const faqItems: FAQItem[] = [
 ];
 
 export default function FAQ() {
-  const [lang, setLang] = useState<Language>('pl');
+  const { lang } = useApp();
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
@@ -89,33 +77,9 @@ export default function FAQ() {
           <div className="text-xs sm:text-sm text-teal-600 tracking-widest uppercase font-semibold mb-3 sm:mb-4">
             FAQ
           </div>
-          <h2 className="font-[family-name:var(--font-heading)] text-2xl sm:text-4xl lg:text-5xl font-bold text-white-900 leading-tight mb-6">
-            Często zadawane pytania
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl sm:text-4xl lg:text-5xl font-bold text-white-900 leading-tight">
+            {lang === 'pl' ? 'Często zadawane pytania' : 'Frequently Asked Questions'}
           </h2>
-
-          {/* Language Toggle */}
-          <div className="flex justify-center gap-3 mt-6">
-            <button
-              onClick={() => setLang('pl')}
-              className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-                lang === 'pl'
-                  ? 'bg-teal-600 text-white-50'
-                  : 'bg-white-200 text-white-700 hover:bg-white-300'
-              }`}
-            >
-              Polski
-            </button>
-            <button
-              onClick={() => setLang('en')}
-              className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-                lang === 'en'
-                  ? 'bg-teal-600 text-white-50'
-                  : 'bg-white-200 text-white-700 hover:bg-white-300'
-              }`}
-            >
-              English
-            </button>
-          </div>
         </div>
 
         {/* FAQ Items */}

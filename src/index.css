@@ -40,6 +40,28 @@
   --font-body: 'Inter', sans-serif;
 }
 
+/* Dark mode — override the white/gray palette when .dark is on <html> */
+html.dark {
+  --color-white-50:  #0f172a;
+  --color-white-100: #1e293b;
+  --color-white-200: #263348;
+  --color-white-300: #334155;
+  --color-white-400: #475569;
+  --color-white-500: #64748b;
+  --color-white-600: #94a3b8;
+  --color-white-700: #cbd5e1;
+  --color-white-800: #e2e8f0;
+  --color-white-900: #f1f5f9;
+  --color-white-950: #f8fafc;
+
+  /* Slightly brighter teal accents for dark bg */
+  --color-teal-50:  #042f2e;
+  --color-teal-100: #134e4a;
+  --color-teal-200: #115e59;
+  --color-teal-600: #2dd4bf;
+  --color-teal-700: #14b8a6;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -50,6 +72,7 @@
     font-family: var(--font-body);
     background-color: var(--color-white-50);
     color: var(--color-white-900);
+    transition: background-color 0.3s ease, color 0.3s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;

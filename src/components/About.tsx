@@ -30,7 +30,6 @@ export default function About() {
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1.5 bg-teal-100 text-teal-700 text-xs sm:text-sm font-semibold rounded-full">✓ REACH</span>
                 <span className="px-3 py-1.5 bg-teal-100 text-teal-700 text-xs sm:text-sm font-semibold rounded-full">✓ HACCP</span>
-                <span className="px-3 py-1.5 bg-teal-100 text-teal-700 text-xs sm:text-sm font-semibold rounded-full">✓ ISO 9001</span>
               </div>
             </div>
           </div>

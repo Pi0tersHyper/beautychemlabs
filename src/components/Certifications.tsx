@@ -1,4 +1,4 @@
-import { Badge, Shield, Zap } from 'lucide-react';
+import { Badge, Shield } from 'lucide-react';
 
 export default function Certifications() {
   const certs = [
@@ -11,11 +11,6 @@ export default function Certifications() {
       icon: Shield,
       name: 'HACCP',
       description: 'System analizy zagrożeń i krytycznych punktów kontroli',
-    },
-    {
-      icon: Zap,
-      name: 'ISO 9001',
-      description: 'Międzynarodowy standard zarządzania jakością',
     },
   ];
 
@@ -31,7 +26,7 @@ export default function Certifications() {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto gap-4 sm:gap-6">
           {certs.map((cert, idx) => {
             const Icon = cert.icon;
             return (
